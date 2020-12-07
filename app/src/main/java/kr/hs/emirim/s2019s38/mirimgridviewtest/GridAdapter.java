@@ -16,6 +16,11 @@ public class GridAdapter extends BaseAdapter {
     public GridAdapter(Context context){
         this.context=context;
     }
+
+    String[] title={"벼랑 위의 포뇨","이웃집 토토로","추억의 마니","붉은돼지","바람계곡의 나우시카",
+                    "센과 치히로의 행방불명","하울의 움직이는 성","귀를 기울이면","추억은 방울방울",
+                    "바다가 들린다","마녀배달부 키키","고양이의 보은","천공의 성 라퓨타",
+                    "마루 밑 아리에티","원령공주","게드전기",};
     @Override
     public int getCount() {
         return imgRes.length;
@@ -42,7 +47,7 @@ public class GridAdapter extends BaseAdapter {
                 AlertDialog.Builder dlg=new AlertDialog.Builder(context);
                 ImageView imgvPoster=dialogView.findViewById(R.id.imgv_dialog);
                 imgvPoster.setImageResource(imgRes[pos]);
-                dlg.setTitle("큰 포스터");
+                dlg.setTitle(title[pos]);
                 dlg.setIcon(R.mipmap.ic_launcher);
                 dlg.setView(dialogView);
                 dlg.setNegativeButton("닫기",null);
