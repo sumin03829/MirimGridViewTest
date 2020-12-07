@@ -1,5 +1,6 @@
 package kr.hs.emirim.s2019s38.mirimgridviewtest;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,22 +22,33 @@ public class GridAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
-    }
+    public Object getItem(int position) { return null; }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
-    }
+    public long getItemId(int position) { return 0; }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
         ImageView imgV=new ImageView(context);
         imgV.setLayoutParams(new AbsListView.LayoutParams(200,300));
         imgV.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imgV.setPadding(5,5,5,5);
         imgV.setImageResource(imgRes[position]);
+        final int pos= position;
+        imgV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View dialogView = View.inflate(context,R.layout.dialog,null);
+                AlertDialog.Builder dlg=new AlertDialog.Builder(context);
+                ImageView imgvPoster=dialogView.findViewById(R.id.imgv_dialog);
+                imgvPoster.setImageResource(imgRes[pos]);
+                dlg.setTitle("큰 포스터");
+                dlg.setIcon(R.mipmap.ic_launcher);
+                dlg.setView(dialogView);
+                dlg.setNegativeButton("닫기",null);
+                dlg.show();
+            }
+        });
         return imgV;
     }
 }
